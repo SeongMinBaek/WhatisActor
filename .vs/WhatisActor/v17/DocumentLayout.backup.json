@@ -1,22 +1,19 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Work\\WhatisActor\\",
+  "WorkspaceRootPath": "C:\\Private\\WhatisActor\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1BAF6987-4882-4DCA-8DC5-BC62544749AB}|WhatisActor\\WhatisActor.vcxproj|C:\\Work\\WhatisActor\\WhatisActor\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{1BAF6987-4882-4DCA-8DC5-BC62544749AB}|WhatisActor\\WhatisActor.vcxproj|C:\\Private\\WhatisActor\\WhatisActor\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{1BAF6987-4882-4DCA-8DC5-BC62544749AB}|WhatisActor\\WhatisActor.vcxproj|solutionrelative:WhatisActor\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1BAF6987-4882-4DCA-8DC5-BC62544749AB}|WhatisActor\\WhatisActor.vcxproj|C:\\PROGRAM FILES\\MICROSOFT VISUAL STUDIO\\2022\\PROFESSIONAL\\VC\\TOOLS\\MSVC\\14.44.35207\\INCLUDE\\XUTILITY||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1BAF6987-4882-4DCA-8DC5-BC62544749AB}|WhatisActor\\WhatisActor.vcxproj|C:\\PROGRAM FILES\\MICROSOFT VISUAL STUDIO\\2022\\PROFESSIONAL\\VC\\TOOLS\\MSVC\\14.44.35207\\INCLUDE\\ATOMIC||{3B902123-F8A7-4915-9F01-361F908088D0}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.44.35207\\crt\\src\\vcruntime\\debugger_jmc.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.44.35207\\include\\memory||{3B902123-F8A7-4915-9F01-361F908088D0}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.44.35207\\include\\xmemory||{3B902123-F8A7-4915-9F01-361F908088D0}|"
+      "AbsoluteMoniker": "D:0:0:{1BAF6987-4882-4DCA-8DC5-BC62544749AB}|WhatisActor\\WhatisActor.vcxproj|C:\\PROGRAM FILES\\MICROSOFT VISUAL STUDIO\\2022\\PROFESSIONAL\\VC\\TOOLS\\MSVC\\14.44.35207\\INCLUDE\\XUTILITY||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.44.35207\\include\\thread||{3B902123-F8A7-4915-9F01-361F908088D0}|"
@@ -29,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -37,20 +34,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "atomic",
-              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.44.35207\\include\\atomic",
-              "RelativeDocumentMoniker": "..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.44.35207\\include\\atomic",
-              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.44.35207\\include\\atomic",
-              "RelativeToolTip": "..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.44.35207\\include\\atomic",
-              "ViewState": "AgIAADwIAAAAAAAAAAAkwFcIAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-04-30T09:42:07.602Z",
+              "DocumentIndex": 1,
+              "Title": "debugger_jmc.c",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.44.35207\\crt\\src\\vcruntime\\debugger_jmc.c",
+              "RelativeDocumentMoniker": "..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.44.35207\\crt\\src\\vcruntime\\debugger_jmc.c",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.44.35207\\crt\\src\\vcruntime\\debugger_jmc.c",
+              "RelativeToolTip": "..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.44.35207\\crt\\src\\vcruntime\\debugger_jmc.c",
+              "ViewState": "AgIAAAYAAAAAAAAAAAApwBYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2026-05-06T02:09:23.538Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "memory",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.44.35207\\include\\memory",
               "RelativeDocumentMoniker": "..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.44.35207\\include\\memory",
@@ -63,7 +60,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "xutility",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.44.35207\\include\\xutility",
               "RelativeDocumentMoniker": "..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.44.35207\\include\\xutility",
@@ -71,25 +68,11 @@
               "RelativeToolTip": "..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.44.35207\\include\\xutility",
               "ViewState": "AgIAAMABAAAAAAAAAAAkwNsBAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-04-30T08:18:12.945Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-30T08:18:12.945Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "xmemory",
-              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.44.35207\\include\\xmemory",
-              "RelativeDocumentMoniker": "..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.44.35207\\include\\xmemory",
-              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.44.35207\\include\\xmemory",
-              "RelativeToolTip": "..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.44.35207\\include\\xmemory",
-              "ViewState": "AgIAACoBAAAAAAAAAAAnwEMBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-04-30T03:52:46.036Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "thread",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.44.35207\\include\\thread",
               "RelativeDocumentMoniker": "..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.44.35207\\include\\thread",
@@ -97,18 +80,17 @@
               "RelativeToolTip": "..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.44.35207\\include\\thread",
               "ViewState": "AgIAAEgAAAAAAAAAAAAnwGEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-04-30T03:52:07.886Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-30T03:52:07.886Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Main.cpp",
-              "DocumentMoniker": "C:\\Work\\WhatisActor\\WhatisActor\\Main.cpp",
+              "DocumentMoniker": "C:\\Private\\WhatisActor\\WhatisActor\\Main.cpp",
               "RelativeDocumentMoniker": "WhatisActor\\Main.cpp",
-              "ToolTip": "C:\\Work\\WhatisActor\\WhatisActor\\Main.cpp",
+              "ToolTip": "C:\\Private\\WhatisActor\\WhatisActor\\Main.cpp",
               "RelativeToolTip": "WhatisActor\\Main.cpp",
-              "ViewState": "AgIAANYAAAAAAAAAAAAAwPQAAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAACoBAAAAAAAAAAAAAOIAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-04-29T06:22:45.618Z",
               "EditorCaption": ""

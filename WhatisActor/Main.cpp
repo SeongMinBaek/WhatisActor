@@ -1,6 +1,8 @@
 #include <iostream>
 #include <queue>
 #include <thread>
+#include <functional>
+#include <unordered_map>
 
 #define COUT(x) cout<<x<<endl;
 
@@ -121,12 +123,15 @@ public:
 		mpNext = nullptr;
 		this->mData = pData;
 
-		COUT("MMessage Create!!");
+		//COUT("MMessage Create!!");
 	}
 
 	~MMessage()
 	{
-		COUT("MMessage Delete!!");
+		if (mData != nullptr)
+			delete mData;
+
+		//COUT("MMessage Delete!!");
 	}
 
 	static std::shared_ptr<MMessage> Create(IData* pData)
@@ -151,58 +156,30 @@ public:
 template<typename T>
 T Singleton<T>::mInstance;
 
-class Actor
+class AtomicQueue
 {
-protected:
+private:
 	std::shared_ptr<MMessage> mTail;
 	std::shared_ptr<MMessage> mHead;
 
-	EActor::Type mType;
-
-	std::thread mThread;
-
-	bool mRunning;
-
 public:
-	Actor(EActor::Type type)
+	AtomicQueue()
 	{
 		mHead = MMessage::Create(new IData(EMessage::None));
-		mType = type;
-
 		Push(mHead);
-	}
-
-	~Actor()
-	{
-		if (mThread.joinable())
-			mThread.join();
 	}
 
 	bool Push(std::shared_ptr<MMessage> post)
 	{
 		post->mpNext = nullptr;
 		std::shared_ptr<MMessage> prevTail = std::atomic_exchange(&mTail, post); //mTail.exchange(post);
-		
-		if(prevTail != nullptr)
+
+		if (prevTail != nullptr)
 			prevTail->mpNext = post;
 
 		return true;
 	}
 
-	virtual void Initialize() { }
-
-	virtual void Start()
-	{
-		mRunning = true;
-		mThread = std::thread(&Actor::DispatchMessage, this);
-	}
-
-	void Stop()
-	{
-		mRunning = false;
-	}
-
-protected:
 	std::shared_ptr<MMessage> Pop()
 	{
 		if (mHead == nullptr)
@@ -212,11 +189,58 @@ protected:
 
 		if (h)
 		{
-			mHead = h->mpNext;
+			mHead->mpNext = nullptr;
+			mHead = h;
 			return h;
 		}
 
 		return nullptr;
+	}
+};
+
+class Actor
+{
+protected:
+	AtomicQueue mQueue;
+
+	EActor::Type mType;
+
+	std::thread mThread;
+	std::unordered_map<int, std::function<bool(IData*)>> mFunc;
+
+	bool mRunning;
+
+public:
+	Actor(EActor::Type type)
+	{
+		mType = type;	
+		mRunning = true;
+	}
+
+	~Actor()
+	{
+		if (mThread.joinable())
+			mThread.join();
+	}
+
+	void Push(std::shared_ptr<MMessage> msg)
+	{
+		mQueue.Push(msg);
+	}
+
+	virtual void Init() { }
+
+	virtual void Start() 
+	{
+		Init();
+
+		mRunning = true;
+		mThread = std::thread(&Actor::DispatchMessage, this);
+	}
+
+	void Stop()
+	{
+		mRunning = false;
 	}
 
 	virtual void DispatchMessage()
@@ -226,16 +250,19 @@ protected:
 			if (mRunning == false)
 				break;
 
-			auto msg = Pop();
+			auto msg = mQueue.Pop();
 			if (msg == nullptr)
 				continue;
 
-			// factory가 있겠지~~
-			Dispatch(msg->mData);
+			if(mFunc.find(msg->mData->mType) != mFunc.end())
+				mFunc[msg->mData->mType](msg->mData);			
 		}
 	}
 
-	virtual void Dispatch(IData* data) { };
+	void RegisterFunc(int msgID, std::function<bool(IData*)> func)
+	{
+		mFunc[msgID] = func;
+	};
 };
 
 class InvenActor : public Singleton<InvenActor>, public Actor
@@ -243,8 +270,16 @@ class InvenActor : public Singleton<InvenActor>, public Actor
 private:
 
 public:
-	InvenActor() : Actor(EActor::Inven) { }
-	virtual void Dispatch(IData* data) override
+	InvenActor() : Actor(EActor::Inven)
+	{
+	}
+
+	virtual void Init() override
+	{
+		RegisterFunc(EMessage::InvenItemUse, std::bind(&InvenActor::OnUseItem, this, std::placeholders::_1));
+	}
+
+	bool OnUseItem(IData* data)
 	{
 		if (data->mType == EMessage::InvenItemUse)
 		{
@@ -252,33 +287,8 @@ public:
 			if (useItem != nullptr)
 				COUT("UserID : " << useItem->userID << " ItemID : " << useItem->itemID);
 		}
-	}
 
-	virtual void Initialize() override
-	{
-		COUT("InvenActor Initialize!!");
-	}
-
-	virtual void Start() override
-	{
-		mRunning = true;
-		mThread = std::thread(&InvenActor::DispatchMessage, this);
-	}
-
-	virtual void DispatchMessage() override
-	{
-		while (true)
-		{
-			if (mRunning == false)
-				break;
-
-			auto msg = Pop();
-			if (msg == nullptr)
-				continue;
-
-			// factory가 있겠지~~
-			Dispatch(msg->mData);
-		}
+		return true;
 	}
 };
 
@@ -287,12 +297,12 @@ class ZoneActor : public Singleton<InvenActor>, public Actor
 private:
 
 public:
-	ZoneActor() : Actor(EActor::Zone) { }
+
 };
 
 static int sValue = 0;
 int threadCount = 1000;
-int limitCount = 1'000'000;
+int limitCount = 1000;
 std::atomic<int> threadID = 0;
 
 void AddData()
@@ -328,9 +338,11 @@ void Run()
 
 int main()
 {
-	//Run();
-	InvenActor::Get().Initialize();
 	InvenActor::Get().Start();
+	Run();
+
+	/*InvenActor::Get().Start();
 	InvenActor::Get().Push(MMessage::Create(new UseItem(100, 200)));
 	InvenActor::Get().Push(MMessage::Create(new UseItem(100, 300)));
+	InvenActor::Get().Push(MMessage::Create(new UseItem(100, 400)));*/
 }
