@@ -69,6 +69,9 @@ static std::string WorkerTag()
 
 class Job
 {
+private:
+	std::function<void()> mCallback;
+
 public:
 	explicit Job(std::function<void()> callback)
 		: mCallback(std::move(callback))
@@ -91,9 +94,6 @@ public:
 	{
 		mCallback();
 	}
-
-private:
-	std::function<void()> mCallback;
 };
 
 using JobRef = std::shared_ptr<Job>;
@@ -110,6 +110,12 @@ using ActorRef = std::shared_ptr<Actor>;
 
 class Scheduler
 {
+private:
+	std::mutex mLock;
+	std::condition_variable mCV;
+	std::queue<ActorRef> mReady;
+	bool mStop;
+
 public:
 	Scheduler() : mStop(false) {}
 
@@ -145,12 +151,6 @@ public:
 		}
 		mCV.notify_all();
 	}
-
-private:
-	std::mutex mLock;
-	std::condition_variable mCV;
-	std::queue<ActorRef> mReady;
-	bool mStop;
 };
 
 static Scheduler GScheduler;
@@ -180,6 +180,16 @@ static std::atomic<long long> GPendingJobs(0);
 
 class Actor : public std::enable_shared_from_this<Actor>
 {
+private:
+	static const int kMaxJobsPerFlush = 64;
+
+	std::string mName;
+
+	std::mutex mLock;          // 잡 "큐" 자체를 보호할 뿐, 액터 상태와는 무관
+	std::queue<JobRef> mJobs;
+	std::atomic<int> mJobCount;
+	std::atomic<int> mFlushing; // 상호배제 검증용
+
 public:
 	explicit Actor(const char* name)
 		: mName(name), mJobCount(0), mFlushing(0)
@@ -241,16 +251,6 @@ public:
 		if (mJobCount.fetch_sub(executed) > executed)
 			GScheduler.Schedule(shared_from_this());
 	}
-
-private:
-	static const int kMaxJobsPerFlush = 64;
-
-	std::string mName;
-
-	std::mutex mLock;          // 잡 "큐" 자체를 보호할 뿐, 액터 상태와는 무관
-	std::queue<JobRef> mJobs;
-	std::atomic<int> mJobCount;
-	std::atomic<int> mFlushing; // 상호배제 검증용
 };
 
 // 액터에게 비동기로 일을 시키는 헬퍼.
